@@ -29,7 +29,7 @@ class DouYu:
     def find_room():
         """Find the most hot 50 rooms of douyu."""
         result = []
-        for page in range(0, 200, 30):
+        for page in range(0, 400, 30):
             datas = json.loads(
                 requests.get("http://capi.douyucdn.cn/api/v1/live?"
                              "limit={}&offset={}".format(page + 30, page))
