@@ -27,7 +27,9 @@ def archive() -> None:
     """Archiving files."""
     while 1:
         tt = time.strftime("%H")
-        with tarfile.open(time.strftime("record/%H%M%S.tar.gz"), "w:gz") as f:
+        with tarfile.open(
+                time.strftime("record/"
+                              "%Y%m%d_%H%M%S.tar.gz"), "w:gz") as f:
             while 1:
                 p = POOL.get()
                 fnames = FNAMES.get()
