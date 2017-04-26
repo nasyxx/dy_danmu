@@ -18,6 +18,7 @@ from douyu import DouYu
 from multiprocessing.dummy import Process, Queue
 import tarfile
 import time
+import os
 
 POOL = Queue()
 FNAMES = Queue()
@@ -33,8 +34,9 @@ def archive() -> None:
             while 1:
                 p = POOL.get()
                 fnames = FNAMES.get()
-                f.add("record/" + fnames + ".danmu")
                 p.join()
+                f.add("record/" + fnames + ".danmu")
+                os.remove("record/" + fnames + ".danmu")
                 if tt == "12":
                     break
                 else:
