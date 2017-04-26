@@ -110,9 +110,7 @@ class DouYu:
         print(self.fname, len(self.rooms))
 
         p_re = Process(target=self.record)
-        pool = Process(
-            target=self.pool_join,
-        )
+        pool = Process(target=self.pool_join)
         pool.start()
         p_re.start()
 
@@ -124,13 +122,13 @@ class DouYu:
         self.pool_queue.put(None)
         pool.join()
         self.msg_queue.put(None)
-        return p_re
+        return p_re, self.fname
 
 
 def main() -> None:
     """Main function."""
     pool = []
-    for i in range(2):
+    for _ in range(2):
         pool.append(DouYu().run())
     for p in pool:
         print("please wait for complete...")
