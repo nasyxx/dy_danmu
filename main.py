@@ -47,9 +47,14 @@ def main() -> None:
     """Main function."""
     Process(target=archive).start()
     while 1:
-        p, fname = DouYu().run()
-        POOL.put(p)
-        FNAMES.put(fname)
+        try:
+            p, fname = DouYu().run()
+            POOL.put(p)
+            FNAMES.put(fname)
+        except KeyboardInterrupt:
+            pass
+        except BaseException as e:
+            print(e)
 
 
 if __name__ == "__main__":

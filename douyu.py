@@ -4,7 +4,7 @@ r"""
 Life's pathetic, happy coding ♡~ Nasy.
 
 O._.O
-(=/) +1s
+(\=/)
 
 @author: Nasy
 @date: Apr 25, 2017
@@ -41,6 +41,7 @@ class DouYu:
 
     @staticmethod
     def log(url, err):
+        """Log when error happened."""
         with open("dy_log", "a") as f:
             f.write(time.time + "\t" + str(url) + "\t" + str(err))
 
@@ -66,6 +67,7 @@ class DouYu:
                     pass
 
     def record(self):
+        """Record dan mu."""
         with open("record/" + self.fname + ".danmu", "w") as f:
             while 1:
                 msg = self.msg_queue.get()
@@ -80,6 +82,7 @@ class DouYu:
                         pass
 
     def _run(self, room, game):
+        """Run for multiprocessing."""
         dmc = DanMuClient('http://www.douyu.com/{}'.format(room))
         if not dmc.isValid():
             self.log('http://www.douyu.com/{}'.format(room), "Url not valid")
