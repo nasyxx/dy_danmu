@@ -90,17 +90,9 @@ class DouYu:
         @dmc.default
         def danmu_fn(msg):
             """Dan mu function."""
-            nn = msg["NickName"]
-            if msg["MsgType"] == "other":
-                content = "other msg"
-                nn = "other"
-            elif msg["MsgType"] == "gift":
-                content = "gift msg"
-            else:
-                content = msg["Content"]
-
-            res = "\t".join((str(room), str(game), str(time.time()),
-                             msg["MsgType"], nn, content, "\n"))
+            res = "\t".join(
+                (str(room), str(game), str(time.time()), msg["MsgType"],
+                 msg["NickName"], msg["Content"], "\n"))
 
             self.msg_queue.put(res)
 
